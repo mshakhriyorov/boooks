@@ -1,9 +1,11 @@
 <script setup lang="ts">
-// import Sidebar from './components/Sidebar/Sidebar.vue'
+import TopNavbar from './components/TopNavbar/TopNavbar.vue'
 </script>
 
 <template>
   <div id="app">
+    <TopNavbar />
+
     <router-view />
   </div>
 </template>
@@ -43,6 +45,4 @@ nav a {
 nav a:first-of-type {
   border: 0;
 }
-
-
 </style>

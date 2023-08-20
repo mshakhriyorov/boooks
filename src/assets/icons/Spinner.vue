@@ -15,5 +15,5 @@
         fill="currentFill"
       />
     </svg>
-  </template>
+</template>
   
