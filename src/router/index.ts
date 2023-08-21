@@ -16,6 +16,12 @@ export const router = new VueRouter({
       meta: { requiresAuth: true },
     },
     {
+      path: '/book/:id',
+      name: 'book',
+      component: HomeView,
+      meta: { requiresAuth: true },
+    },
+    {
       path: '/sign-up',
       name: 'signUp',
       component: () => import('@/pages/User/SignUp/SignUp.vue'),

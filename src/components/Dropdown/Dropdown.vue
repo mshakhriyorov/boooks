@@ -15,7 +15,7 @@
             <ul v-show="isOpenDropdown"
                 class="absolute left-0 right-0 mb-4 bg-gray-800 divide-y rounded-lg shadow-lg overflow-hidden z-20">
                 <li v-for="(option, _index) in options" :key="option"
-                    class="px-3 py-2 transition-colors duration-300 hover:bg-gray-600 cursor-pointer"
+                    class="px-3 py-2 transition-colors text-gray-400 duration-300 hover:bg-gray-600 cursor-pointer"
                     @mousedown.prevent="setOption()">
                     {{ option }}
                 </li>

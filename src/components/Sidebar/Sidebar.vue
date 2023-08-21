@@ -1,28 +1,22 @@
-
-
 <template>
-    <div class="sidebar">
-        <Dropdown :options="categoryOptions" :title="booksTitle" />
-        <Dropdown :options="categoryOptions" :title="audioBooksTitle" />
-
-    </div>
+  <div class="sidebar">
+    <Dropdown :options="categoryOptions" :title="booksTitle" />
+  </div>
 </template>
 
 <script lang="ts">
-import { ref } from 'vue'
+import { ref } from 'vue';
 
-import Dropdown from "@/components/Dropdown/Dropdown.vue";
+import Dropdown from '@/components/Dropdown/Dropdown.vue';
 
 export default {
-    name: 'Sidebar',
-    setup() {
-        const categoryOptions = ref(['Category1', 'Category2', 'Category3']);
-        const booksTitle = ref('Kitoblar');
-        const audioBooksTitle = ref('Audio kitoblar');
+  name: 'Sidebar',
+  setup() {
+    const categoryOptions = ref(['Category1', 'Category2', 'Category3']);
+    const booksTitle = ref('Kitoblar');
 
-
-        return { categoryOptions, booksTitle, audioBooksTitle }
-    },
-    components: { Dropdown }
-}
+    return { categoryOptions, booksTitle };
+  },
+  components: { Dropdown },
+};
 </script>
