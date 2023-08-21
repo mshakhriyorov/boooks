@@ -1,12 +1,14 @@
 <script setup lang="ts">
-import TopNavbar from './components/TopNavbar/TopNavbar.vue'
+import TopNavbar from './components/TopNavbar/TopNavbar.vue';
 </script>
 
 <template>
   <div id="app">
     <TopNavbar />
 
-    <router-view />
+    <div class="app__main">
+      <router-view />
+    </div>
   </div>
 </template>
 

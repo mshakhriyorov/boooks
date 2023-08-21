@@ -25,7 +25,7 @@ const initial_user: USER = {
   token: '',
 };
 
-export const userStore = defineStore({
+export const useUserStore = defineStore({
   id: 'user',
   state: () => ({
     user: initial_user || null,

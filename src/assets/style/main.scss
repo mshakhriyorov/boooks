@@ -5,11 +5,14 @@
 @import 'tailwindcss/utilities';
 
 #app {
+  padding: 0 20px;
+  
+  font-weight: normal;
+}
+
+.app__main{
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 20px;
-
-  font-weight: normal;
 }
 
 a,

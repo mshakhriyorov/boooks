@@ -55,14 +55,14 @@
 import { reactive, ref } from 'vue';
 
 import Lock from '@/assets/icons/Lock.vue';
-import router from '@/router';
 
-import { userStore } from '../../../stores/user';
+import { useUserStore } from '../../../stores/user';
+import { handleRoute } from '@/utils/handleRoute';
 
 export default {
     name: 'SignUp',
     setup() {
-        const userAccountStore = userStore();
+        const userStore = useUserStore();
         const errorMessage = ref('');
         const userData = reactive({
             name: '',
@@ -72,9 +72,9 @@ export default {
         });
 
         const handleSubmit = async () => {
-            const response = await userAccountStore.signUp(userData);
+            const response = await userStore.signUp(userData);
             if (response?.status === 200) {
-                router.push('/');
+                handleRoute('/');
             }
             else {
                 errorMessage.value = response?.response.data.message;
