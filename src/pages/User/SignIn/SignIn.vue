@@ -45,7 +45,7 @@
 <script lang="ts">
 import { reactive, ref } from 'vue';
 
-import Lock from '@/assets/icons/Lock.vue';
+import Lock from '@/assets/icons/LockSvg.vue';
 
 import { useUserStore } from '../../../stores/user';
 import { handleRoute } from '@/utils/handleRoute';

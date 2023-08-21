@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import HomeView from '@/views/HomeView.vue';
+import HomeView from '@/components/HomeView.vue';
 
 Vue.use(VueRouter);
 
@@ -24,14 +24,6 @@ export const router = new VueRouter({
       path: '/sign-in',
       name: 'signIn',
       component: () => import('@/pages/User/SignIn/SignIn.vue'),
-    },
-    {
-      path: '/about',
-      name: 'about',
-      // route level code-splitting
-      // this generates a separate chunk (About.[hash].js) for this route
-      // which is lazy-loaded when the route is visited.
-      component: () => import('@/views/AboutView.vue'),
     },
   ],
 });
