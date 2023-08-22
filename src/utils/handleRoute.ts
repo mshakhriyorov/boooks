@@ -1,4 +1,4 @@
-import router from "@/router"
+import router from "@/router";
 
 export const handleRoute = (urlPath: string) => {
     if(router.currentRoute.fullPath !== urlPath){

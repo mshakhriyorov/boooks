@@ -14,10 +14,10 @@
             leave-class="translate-y-0 scale-y-100 opacity-100" leave-to-class="-translate-y-1/2 scale-y-0 opacity-0">
             <ul v-show="isOpenDropdown"
                 class="absolute left-0 right-0 mb-4 bg-gray-800 divide-y rounded-lg shadow-lg overflow-hidden z-20">
-                <li v-for="(option, _index) in options" :key="option"
+                <li v-for="(option, _index) in options" :key="option.id"
                     class="px-3 py-2 transition-colors text-gray-400 duration-300 hover:bg-gray-600 cursor-pointer"
-                    @mousedown.prevent="setOption()">
-                    {{ option }}
+                    @mousedown.prevent="setOption(option.id)">
+                    {{ option.name }}
                 </li>
 
             </ul>
@@ -26,18 +26,20 @@
 </template>
 
 <script lang="ts">
-import { ref } from 'vue';
+import { ref, type PropType } from 'vue';
 
 import './Dropdown.scss';
 
 import DropdownSvg from '@/assets/icons/DropdownSvg.vue';
 
+import type { Category } from '@/types/category';
+import { handleRoute } from '@/utils/handleRoute';
+
 export default {
     name: 'Dropdown',
     props: {
         options: {
-            type: Array as () => string[],
-            required: true
+            type: Array as PropType<Category[]>, required: true,
         },
         title: {
             type: String,
@@ -50,7 +52,8 @@ export default {
         return { isOpenDropdown }
     },
     methods: {
-        setOption() {
+        setOption(id: number | string) {
+            handleRoute(`/category/${id}`)
             this.isOpenDropdown = false;
         },
     },

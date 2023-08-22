@@ -31,7 +31,7 @@
     >
       <ul
         v-show="isOptionsExpanded"
-        class="absolute left-0 right-0 mb-4 bg-gray-800 divide-y rounded-lg shadow-lg overflow-hidden z-10"
+        class="absolute left-0 right-0 mb-4 bg-gray-800 divide-y rounded-lg shadow-lg overflow-hidden z-20"
       >
         <li class="px-3 py-2 text-sm">Select a language</li>
         <li

@@ -7,7 +7,7 @@ import TopNavbar from './components/TopNavbar/TopNavbar.vue';
     <TopNavbar />
 
     <div class="app__main">
-      <router-view :key="$route.fullPath" />
+      <router-view />
     </div>
   </div>
 </template>

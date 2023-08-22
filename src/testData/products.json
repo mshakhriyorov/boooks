@@ -1,0 +1,64 @@
+{
+    "products" : [
+        {
+          "id": 1,
+          "categoryId": 3,
+          "name": "The Scorpion",
+          "author": "John Doyle",
+          "description": "lorem ipsum dolor set..",
+          "year": 2002,
+          "image":
+            "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
+        },
+        {
+            "id": 2,
+            "categoryId": 3,
+            "name": "The Scorpion",
+            "author": "John Doyle",
+            "description": "lorem ipsum dolor set..",
+            "year": 2002,
+            "image":
+              "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
+        },
+        {
+            "id": 3,
+            "categoryId": 3,
+            "name": "The Scorpion",
+            "author": "John Doyle",
+            "description": "lorem ipsum dolor set..",
+            "year": 2002,
+            "image":
+              "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
+        },
+        {
+            "id": 4,
+            "categoryId": 3,
+            "name": "The Scorpion",
+            "author": "John Doyle",
+            "description": "lorem ipsum dolor set..",
+            "year": 2002,
+            "image":
+              "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
+        },
+        {
+            "id": 5,
+            "categoryId": 3,
+            "name": "The Scorpion",
+            "author": "John Doyle",
+            "description": "lorem ipsum dolor set..",
+            "year": 2002,
+            "image":
+              "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
+        },
+        {
+            "id": 6,
+            "categoryId": 3,
+            "name": "The Scorpion",
+            "author": "John Doyle",
+            "description": "lorem ipsum dolor set..",
+            "year": 2002,
+            "image":
+              "https://tailwindui.com/img/ecommerce-images/category-page-04-image-card-01.jpg"
+        }
+      ]
+}
