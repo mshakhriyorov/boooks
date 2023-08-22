@@ -7,7 +7,7 @@
       "@/*": ["./src/*"]
     }
   },
-
+  "types": ["vue-sweetalert2"],
   "references": [
     {
       "path": "./tsconfig.config.json"

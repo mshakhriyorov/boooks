@@ -1,3 +1,12 @@
-.dropdown{
-    width: 200px;
+.dropdown {
+  width: 200px;
+}
+.dropdown__item-actions {
+  display: none;
+}
+
+.dropdown__item:hover {
+  .dropdown__item-actions {
+    display: block;
+  }
 }

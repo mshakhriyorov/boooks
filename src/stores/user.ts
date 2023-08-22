@@ -2,19 +2,7 @@ import { defineStore } from 'pinia';
 
 import axiosInstance from '@/utils/axios';
 
-interface USER_SIGN_IN {
-  email: string;
-  password: string;
-}
-interface USER_SIGN_UP extends USER_SIGN_IN {
-  name: string;
-  surname: string;
-}
-
-interface USER extends USER_SIGN_UP {
-  id: number | null;
-  token: string;
-}
+import type { USER, USER_SIGN_IN, USER_SIGN_UP } from '@/types/user';
 
 const initial_user: USER = {
   email: '',

@@ -1,83 +1,140 @@
 <template>
   <div class="mx-auto max-w-2xl px-4 sm:px-2 lg:max-w-7xl lg:px-8">
-    <h2 class="text-white text-xl mb-2" v-if="title">{{ title }}</h2>
-    <h2 class="text-white text-xl mb-2" v-else>{{ categoryName }}</h2>
-    <div class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8">
-      <div v-for="book in books" :key="book.id" class="group">
+    <h2 class="text-white text-xl mb-2 capitalize" v-if="title">{{ title }}</h2>
+    <h2 class="text-white text-xl mb-2 capitalize" v-else>{{ categoryName }}</h2>
+    <div
+      class="grid grid-cols-1 gap-x-6 gap-y-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 xl:gap-x-8"
+    >
+      <div v-for="book in books" :key="`${book.name}_${book.id}`" class="group">
         <Book :book="book" />
       </div>
     </div>
     <!-- pagination buttons -->
     <div class="w-full mt-8">
       <ul v-if="total_pages > 1" class="flex pl-0 list-none rounded my-2">
-        <li class="leading-tight bg-stone-600 border border-gray-300 border-r-0 ml-0 rounded-l hover:bg-gray-400"
-          :class="{ 'bg-gray-200': isInFirstPage }">
-          <button type="button" class="py-2 px-3" :class="{ 'cursor-not-allowed': isInFirstPage }"
-            :disabled="isInFirstPage" @click="gotoFirst">
+        <li
+          class="leading-tight bg-stone-600 border border-gray-300 border-r-0 ml-0 rounded-l hover:bg-gray-400"
+          :class="{ 'bg-gray-200': isInFirstPage }"
+        >
+          <button
+            type="button"
+            class="py-2 px-3"
+            :class="{ 'cursor-not-allowed': isInFirstPage }"
+            :disabled="isInFirstPage"
+            @click="gotoFirst"
+          >
             &laquo;
           </button>
         </li>
 
-        <li class="leading-tight bg-stone-600	 border border-gray-300 border-r-0 hover:bg-gray-400"
-          :class="{ 'bg-gray-200': isInFirstPage }">
-          <button type="button" class="py-2 px-3" :class="{ 'cursor-not-allowed': isInFirstPage }"
-            :disabled="isInFirstPage" @click="gotoPrevious">
+        <li
+          class="leading-tight bg-stone-600 border border-gray-300 border-r-0 hover:bg-gray-400"
+          :class="{ 'bg-gray-200': isInFirstPage }"
+        >
+          <button
+            type="button"
+            class="py-2 px-3"
+            :class="{ 'cursor-not-allowed': isInFirstPage }"
+            :disabled="isInFirstPage"
+            @click="gotoPrevious"
+          >
             &lsaquo;
           </button>
         </li>
 
         <template v-if="showDots('left')">
-          <li class="leading-tight bg-stone-600	 border border-gray-300 border-r-0 hover:bg-gray-400"
-            :class="{ 'bg-gray-600': isInFirstPage }">
-            <button type="button" class="py-2 px-3" :class="{ 'cursor-not-allowed': isInFirstPage }"
-              :disabled="isInFirstPage" @click="gotoPageNumber(1)">
+          <li
+            class="leading-tight bg-stone-600 border border-gray-300 border-r-0 hover:bg-gray-400"
+            :class="{ 'bg-gray-600': isInFirstPage }"
+          >
+            <button
+              type="button"
+              class="py-2 px-3"
+              :class="{ 'cursor-not-allowed': isInFirstPage }"
+              :disabled="isInFirstPage"
+              @click="gotoPageNumber(1)"
+            >
               1
             </button>
           </li>
 
-          <li class="leading-tight bg-stone-600	 border border-gray-300 border-r-0 hover:bg-gray-400">
+          <li
+            class="leading-tight bg-stone-600 border border-gray-300 border-r-0 hover:bg-gray-400"
+          >
             <button type="button" class="py-2 px-3" :disabled="true">
               ...
             </button>
           </li>
         </template>
 
-        <li class="leading-tight bg-stone-600	 border border-gray-300 border-r-0 hover:bg-gray-400"
-          v-for="(page, index) in pages" :key="`pages_${index}`" :class="{ 'bg-gray-600': page === currentPage }">
-          <button type="button" class="py-2 px-3" :class="{ 'cursor-not-allowed bg-gray-400': page === currentPage }"
-            :disabled="page === currentPage" @click="gotoPageNumber(page)">
+        <li
+          class="leading-tight bg-stone-600 border border-gray-300 border-r-0 hover:bg-gray-400"
+          v-for="(page, index) in pages"
+          :key="`pages_${index}`"
+          :class="{ 'bg-gray-600': page === currentPage }"
+        >
+          <button
+            type="button"
+            class="py-2 px-3"
+            :class="{ 'cursor-not-allowed bg-gray-400': page === currentPage }"
+            :disabled="page === currentPage"
+            @click="gotoPageNumber(page)"
+          >
             {{ page }}
           </button>
         </li>
 
         <template v-if="showDots('right')">
-          <li class="leading-tight bg-stone-600 border border-gray-300 border-r-0 hover:bg-gray-400">
+          <li
+            class="leading-tight bg-stone-600 border border-gray-300 border-r-0 hover:bg-gray-400"
+          >
             <button type="button" class="py-2 px-3" :disabled="true">
               ...
             </button>
           </li>
 
-          <li class="leading-tight bg-stone-600 border border-gray-300 border-r-0 hover:bg-gray-400"
-            :class="{ 'bg-gray-600': isInLastPage }">
-            <button type="button" class="py-2 px-3" :class="{ 'cursor-not-allowed': isInLastPage }"
-              :disabled="isInLastPage" @click="gotoPageNumber(total_pages)">
+          <li
+            class="leading-tight bg-stone-600 border border-gray-300 border-r-0 hover:bg-gray-400"
+            :class="{ 'bg-gray-600': isInLastPage }"
+          >
+            <button
+              type="button"
+              class="py-2 px-3"
+              :class="{ 'cursor-not-allowed': isInLastPage }"
+              :disabled="isInLastPage"
+              @click="gotoPageNumber(total_pages)"
+            >
               {{ total_pages }}
             </button>
           </li>
         </template>
 
-        <li class="leading-tight bg-stone-600 border border-gray-300 border-r-0 hover:bg-gray-400"
-          :class="{ 'bg-gray-200': isInLastPage }">
-          <button type="button" class="py-2 px-3" :class="{ 'cursor-not-allowed': isInLastPage }" :disabled="isInLastPage"
-            @click="gotoNext">
+        <li
+          class="leading-tight bg-stone-600 border border-gray-300 border-r-0 hover:bg-gray-400"
+          :class="{ 'bg-gray-200': isInLastPage }"
+        >
+          <button
+            type="button"
+            class="py-2 px-3"
+            :class="{ 'cursor-not-allowed': isInLastPage }"
+            :disabled="isInLastPage"
+            @click="gotoNext"
+          >
             &rsaquo;
           </button>
         </li>
 
-        <li class="leading-tight bg-stone-600 border border-gray-300 border-r-0 rounded-r border-r hover:bg-gray-400"
-          :class="{ 'bg-gray-200': isInLastPage }">
-          <button type="button" class="py-2 px-3" :class="{ 'cursor-not-allowed': isInLastPage }" :disabled="isInLastPage"
-            @click="gotoLast">
+        <li
+          class="leading-tight bg-stone-600 border border-gray-300 border-r-0 rounded-r border-r hover:bg-gray-400"
+          :class="{ 'bg-gray-200': isInLastPage }"
+        >
+          <button
+            type="button"
+            class="py-2 px-3"
+            :class="{ 'cursor-not-allowed': isInLastPage }"
+            :disabled="isInLastPage"
+            @click="gotoLast"
+          >
             &raquo;
           </button>
         </li>
@@ -88,12 +145,14 @@
 
 <script lang="ts">
 import { ref, type PropType } from 'vue';
-import router from "@/router";
+import router from '@/router';
 
 import Book from '@/components/Book/Book.vue';
 
 import type { Book as BOOK } from '@/types/book';
-import { categories } from '@/testData/categories.json';
+
+import { useBookStore } from '@/stores/books';
+import { useCategoryStore } from '@/stores/category';
 
 export default {
   name: 'Books',
@@ -102,17 +161,28 @@ export default {
     pagination: { type: Object, required: true },
     maxVisibleButtons: { type: Number, required: false, default: 5 },
     books: { type: Array as PropType<BOOK[]>, required: true },
-    title: { type: String, default: '' }
+    title: { type: String, default: '' },
   },
   setup() {
+    const bookStore = useBookStore();
+    const categoryStore = useCategoryStore();
     const per_page = ref(10);
     const total = ref(0);
     const total_pages = ref(0);
     const [, , id] = router.currentRoute.fullPath.split('/');
-    const category = categories.find(cat => cat.id.toString() === id);
+    const category = categoryStore.categories.find(
+      cat => cat.id.toString() === id,
+    );
     const categoryName = ref(category?.name);
 
-    return { per_page, total, total_pages, categoryName };
+    return {
+      per_page,
+      total,
+      total_pages,
+      categoryName,
+      categoryStore,
+      bookStore,
+    };
   },
   watch: {
     pagination: {
@@ -129,11 +199,13 @@ export default {
     },
     $route(to, _from) {
       const [, , id] = to.fullPath.split('/');
-      const category = categories.find(cat => cat.id.toString() === id);
+      const category = this.categoryStore.categories.find(
+        cat => cat.id.toString() === id,
+      );
       if (category) {
         this.categoryName = category.name;
       }
-    }
+    },
   },
   computed: {
     isInFirstPage() {
@@ -199,6 +271,9 @@ export default {
     onPageChange() {
       console.log(this.currentPage);
     },
+  },
+  mounted() {
+    this.bookStore.fetchAllBooks();
   },
   components: { Book },
 };
