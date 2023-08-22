@@ -1,5 +1,5 @@
 <template>
-    <div class="dropdown relative">
+    <div class="dropdown relative w-full">
         <button
             class="relative z-10 overflow-hidden focus:outline-none w-full mb-2 flex items-center justify-between leading-loose align-middle px-4 py-1 rounded cursor-pointer text-sm bg-blue-600 text-white"
             @click="isOpenDropdown = !isOpenDropdown">

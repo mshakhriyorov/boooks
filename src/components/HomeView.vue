@@ -4,15 +4,6 @@
       <Sidebar />
     </div>
     <div class="col-span-4">
-      <!-- <Books :pagination="{
-        per_page: 10,
-        total: 187,
-        total_pages: 19,
-      }" :currentPage="currentPage" @pagechanged="onPageChange" :books="books" :title="title" />
-
-      <BooksCategories :books="books" :categories="categories" />
-
-      <BookModal :book="bookData" /> -->
       <router-view />
     </div>
   </div>

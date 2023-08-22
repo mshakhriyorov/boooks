@@ -4,6 +4,8 @@ import VueRouter from 'vue-router';
 import { products } from '@/testData/products.json';
 import { categories } from '@/testData/categories.json';
 
+import EditorBook from '../pages/Editor/Book/EditorBook.vue';
+import EditorCategory from '../pages/Editor/Category/EditorCategory.vue';
 import HomeView from '@/components/HomeView.vue';
 
 Vue.use(VueRouter);
@@ -17,6 +19,18 @@ export const router = new VueRouter({
       component: HomeView,
       props: true,
       children: [
+        {
+          path: 'category/editor',
+          name: "category-editor",
+          // props: route => ({ id: route.params.id, book: products[0] }),
+          component: EditorCategory
+        },
+        {
+          path: 'book/editor',
+          name: "book-editor",
+          // props: route => ({ id: route.params.id, book: products[0] }),
+          component: EditorBook
+        },
         {
           path: 'book/:id',
           name: "book-details",
