@@ -17,7 +17,7 @@ export const useBookStore = defineStore({
   id: 'book',
   state: () => ({
     books: [] as Book[],
-    book: INITIAL_STATE || null,
+    book: INITIAL_STATE,
   }),
   getters: {},
   actions: {
@@ -37,6 +37,17 @@ export const useBookStore = defineStore({
         const response = await axiosInstance.get('/book');
 
         this.books = response.data.data;
+      } catch (error: any) {
+        console.log(error.response.data);
+        return error.response.data;
+      }
+    },
+    async fetchBook(bookId: string) {
+      try {
+        const response = await axiosInstance.get(`/book/${bookId}`);
+
+        this.book = response.data.data;
+        return response.data;
       } catch (error: any) {
         console.log(error.response.data);
         return error.response.data;

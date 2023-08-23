@@ -1,16 +1,36 @@
 <template>
-  <div @click="handleRoute(`/book/${book.id}`)" class="cursor-pointer" :class="{ 'w-80': isSlider }">
-    <div class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7 relative">
-      <img :src="book.image" :alt="book.name" class="h-full w-full object-cover object-center group-hover:opacity-75" />
-      <div class="flex justify-between items-start absolute top-0 left-0 p-2 gap-2 z-10">
-        <div class="p-2 bg-gray-300 rounded-lg text-white backdrop-blur cursor-pointer hover:bg-gray-400">
-          <SavedSvg :class="{ 'book__saved': isSaved }" />
+  <div
+    @click="handleRoute(`/book/${book.id}`)"
+    class="cursor-pointer"
+    :class="{ 'w-80': isSlider }"
+  >
+    <div
+      class="aspect-h-1 aspect-w-1 w-full overflow-hidden rounded-lg bg-gray-200 xl:aspect-h-8 xl:aspect-w-7 relative"
+    >
+      <img
+        :src="book.image"
+        :alt="book.name"
+        class="h-full w-full object-cover object-center group-hover:opacity-75 book__image"
+      />
+      <div
+        class="flex justify-between items-start absolute top-0 left-0 p-2 gap-2 z-10"
+      >
+        <div
+          class="p-2 bg-gray-300 rounded-lg text-white backdrop-blur cursor-pointer hover:bg-gray-400"
+        >
+          <SavedSvg :class="{ book__saved: isSaved }" />
         </div>
-        <div class="rounded-lg text-white backdrop-blur cursor-pointer flex gap-2">
-          <div class="p-2 rounded-lg text-white backdrop-blur cursor-pointer flex bg-gray-300 hover:bg-gray-400">
+        <div
+          class="rounded-lg text-white backdrop-blur cursor-pointer flex gap-2"
+        >
+          <div
+            class="p-2 rounded-lg text-white backdrop-blur cursor-pointer flex bg-gray-300 hover:bg-gray-400"
+          >
             <EditSvg />
           </div>
-          <div class="p-2 rounded-lg text-white backdrop-blur cursor-pointer flex bg-gray-300 hover:bg-gray-400">
+          <div
+            class="p-2 rounded-lg text-white backdrop-blur cursor-pointer flex bg-gray-300 hover:bg-gray-400"
+          >
             <DeleteSvg />
           </div>
         </div>
@@ -40,12 +60,12 @@ export default defineComponent({
   name: 'Book',
   props: {
     book: { type: Object as PropType<BOOK>, required: true },
-    isSlider: { type: Boolean, default: false }
+    isSlider: { type: Boolean, default: false },
   },
   setup() {
     const isSaved = true;
 
-    return { handleRoute, isSaved }
+    return { handleRoute, isSaved };
   },
   components: { SavedSvg, EditSvg, DeleteSvg },
 });
@@ -54,5 +74,10 @@ export default defineComponent({
 <style scoped lang="scss">
 .book__saved {
   color: blue;
+}
+
+.book__image {
+  min-width: 200px;
+  min-height: 240px;
 }
 </style>

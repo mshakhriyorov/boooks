@@ -78,9 +78,7 @@ export default defineComponent({
         return 'Edit'
       }
     })
-    const categoryData = isCreating() ? categoryCreateData : categoryEditData
-    console.log(categoryEditData);
-
+    const categoryData = isCreating() ? categoryCreateData : categoryEditData;
 
     const handleCancel = () => {
       handleRoute('/');
