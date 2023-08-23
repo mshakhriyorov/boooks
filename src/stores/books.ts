@@ -26,6 +26,7 @@ export const useBookStore = defineStore({
         const response = await axiosInstance.post('/book', bookData);
 
         this.books = [...this.books, response.data.data];
+        return response.data;
       } catch (error) {
         console.log(error);
         return error;
@@ -36,9 +37,9 @@ export const useBookStore = defineStore({
         const response = await axiosInstance.get('/book');
 
         this.books = response.data.data;
-      } catch (error) {
-        console.log(error);
-        return error;
+      } catch (error: any) {
+        console.log(error.response.data);
+        return error.response.data;
       }
     },
     reset() {

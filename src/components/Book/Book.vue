@@ -27,7 +27,7 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue';
+import { defineComponent, type PropType } from 'vue';
 
 import EditSvg from '@/assets/icons/EditSvg.vue';
 import DeleteSvg from '@/assets/icons/DeleteSvg.vue';
@@ -36,7 +36,7 @@ import SavedSvg from '@/assets/icons/SavedSvg.vue';
 import { handleRoute } from '@/utils/handleRoute';
 import type { Book as BOOK } from '@/types/book';
 
-export default {
+export default defineComponent({
   name: 'Book',
   props: {
     book: { type: Object as PropType<BOOK>, required: true },
@@ -48,7 +48,7 @@ export default {
     return { handleRoute, isSaved }
   },
   components: { SavedSvg, EditSvg, DeleteSvg },
-};
+});
 </script>
 
 <style scoped lang="scss">

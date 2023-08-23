@@ -10,18 +10,11 @@
 </template>
 
 <script lang="ts">
+import { defineComponent } from 'vue';
 import Sidebar from './Sidebar/Sidebar.vue';
 
-export default {
+export default defineComponent({
   name: 'HomeView',
-  // methods: {
-  //   // onPageChange(page: any) {
-  //   //   this.currentPage = page;
-  //   // },
-  //   isCurrentPath(currentPath: string) {
-  //     return router.currentRoute.fullPath === currentPath;
-  //   },
-  // },
   components: { Sidebar },
-};
+});
 </script>

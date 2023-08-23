@@ -36,14 +36,14 @@
 </template>
 
 <script lang="ts">
-import type { PropType } from 'vue';
+import { defineComponent, type PropType } from 'vue';
 
 import ArrowLeftSvg from '@/assets/icons/ArrowLeftSvg.vue';
 
 import type { Book } from '@/types/book';
 
 
-export default {
+export default defineComponent({
   name: 'BookModal',
   props: {
     book: { type: Object as PropType<Book>, required: true },
@@ -54,5 +54,5 @@ export default {
     }
   },
   components: { ArrowLeftSvg }
-};
+});
 </script>

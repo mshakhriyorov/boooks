@@ -13,7 +13,7 @@ Vue.use(PiniaVuePlugin);
 Vue.use(VueSweetalert2);
 
 new Vue({
-  router,
   pinia: createPinia(),
+  router,
   render: h => h(App),
 }).$mount('#app');

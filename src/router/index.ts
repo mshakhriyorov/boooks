@@ -8,6 +8,7 @@ import EditorBook from '../pages/Editor/Book/EditorBook.vue';
 import EditorCategory from '../pages/Editor/Category/EditorCategory.vue';
 import HomeView from '@/components/HomeView.vue';
 
+
 Vue.use(VueRouter);
 
 export const router = new VueRouter({
@@ -20,15 +21,13 @@ export const router = new VueRouter({
       props: true,
       children: [
         {
-          path: 'category/editor',
+          path: 'category/editor/:type',
           name: "category-editor",
-          // props: route => ({ id: route.params.id, book: products[0] }),
           component: EditorCategory
         },
         {
-          path: 'book/editor',
+          path: 'book/editor/:type',
           name: "book-editor",
-          // props: route => ({ id: route.params.id, book: products[0] }),
           component: EditorBook
         },
         {
