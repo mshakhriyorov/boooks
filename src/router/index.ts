@@ -51,11 +51,7 @@ export const router = new VueRouter({
         },
         {
           path: '',
-          props: route => ({
-            id: route.params.id,
-            categories: categories,
-            books: products,
-          }),
+          props: true,
           name: 'books-with-categories',
           component: () =>
             import('@/pages/Books/Categories/BooksCategories.vue'),

@@ -6,12 +6,11 @@ import Vue from 'vue';
 
 const SWEET_ALERT_OPTIONS = {
   title: "Ushbu kategoriya o'chirilsinmi?",
-  type: "warning",
+  type: 'warning',
   showCancelButton: true,
-  confirmButtonColor: "#3085d6",
-  confirmButtonText: "Ha, o'chirilsin!"
-}
-
+  confirmButtonColor: '#3085d6',
+  confirmButtonText: "Ha, o'chirilsin!",
+};
 
 const INITIAL_STATE: Category = {
   id: '',
@@ -25,7 +24,10 @@ export const useCategoryStore = defineStore({
     categories: [] as Category[],
     category: INITIAL_STATE,
   }),
-  getters: { getCategoryById: (state) => (id: string) => state.categories.find(category => category.id.toString() === id.toString()) },
+  getters: {
+    getCategoryById: state => (id: string) =>
+      state.categories.find(category => category.id === id),
+  },
   actions: {
     async createCategory(categoryData: { name: string; description: string }) {
       try {
@@ -49,9 +51,18 @@ export const useCategoryStore = defineStore({
         return error.response.data;
       }
     },
-    async updateCategory({ categoryId, categoryData }: { categoryId: string | number, categoryData: Object }) {
+    async updateCategory({
+      categoryId,
+      categoryData,
+    }: {
+      categoryId: string | number;
+      categoryData: Object;
+    }) {
       try {
-        const response = await axiosInstance.put(`/category/${categoryId}`, categoryData);
+        const response = await axiosInstance.put(
+          `/category/${categoryId}`,
+          categoryData,
+        );
 
         return response.data;
       } catch (error: any) {
@@ -74,11 +85,13 @@ export const useCategoryStore = defineStore({
       Vue.swal(SWEET_ALERT_OPTIONS).then(async (result: any) => {
         if (result.value) {
           try {
-            const response = await axiosInstance.delete(`/category/${categoryId}`);
+            const response = await axiosInstance.delete(
+              `/category/${categoryId}`,
+            );
 
             if (response.data.status === 200) {
-              Vue.swal('Kategoriya o\'chirildi!');
-              this.fetchAllCategories()
+              Vue.swal("Kategoriya o'chirildi!");
+              this.fetchAllCategories();
             }
           } catch (error: any) {
             console.log(error.response.data);
@@ -86,11 +99,10 @@ export const useCategoryStore = defineStore({
           }
         }
       });
-
     },
     reset() {
       this.categories = [];
-      this.category = INITIAL_STATE
+      this.category = INITIAL_STATE;
     },
   },
 });

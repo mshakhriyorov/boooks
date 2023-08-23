@@ -1,28 +1,37 @@
 <template>
-    <div>
-        <div v-for="(category, _index) in categories" :key="category.id">
-            <BooksSlider v-if="books.some(({ categoryId }) => categoryId === category.id)"
-                :categoryId="category.id.toString()" :books="books" :title="category.name" isSlider />
-        </div>
+  <div>
+    <div v-for="(category, _index) in categories" :key="category.id">
+      <BooksSlider
+        :categoryId="category.id.toString()"
+        :books="books"
+        :title="category.name"
+      />
     </div>
+  </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, type PropType } from 'vue';
+import { storeToRefs } from 'pinia';
+import { defineComponent } from 'vue';
 
 import BooksSlider from '../Slider/BooksSlider.vue';
 
-import type { Book as BOOK } from '../../../types/book';
-import type { Category } from '../../../types/category';
+import { useBookStore } from '@/stores/books';
+import { useCategoryStore } from '@/stores/category';
 
 export default defineComponent({
-    name: 'BooksCategories',
-    props: {
-        books: { type: Array as PropType<BOOK[]>, required: true },
-        categories: {
-            type: Array as PropType<Category[]>, required: true,
-        },
-    },
-    components: { BooksSlider }
+  name: 'BooksCategories',
+  setup() {
+    const bookStore = useBookStore();
+    const categoryStore = useCategoryStore();
+    const { books } = storeToRefs(bookStore);
+    const { categories } = storeToRefs(categoryStore);
+
+    return { bookStore, categoryStore, books, categories };
+  },
+  mounted() {
+    this.bookStore.fetchAllBooks();
+  },
+  components: { BooksSlider },
 });
 </script>

@@ -4,14 +4,15 @@ import axiosInstance from '@/utils/axios';
 import type { BOOK_DATA, Book } from '@/types/book';
 
 const INITIAL_STATE: Book = {
-  id: null,
-  categoryId: null,
+  id: '',
+  categoryId: '',
   image: '',
   year: null,
   author: '',
   name: '',
   description: '',
 };
+import { products } from '@/testData/products.json';
 
 export const useBookStore = defineStore({
   id: 'book',
@@ -19,7 +20,13 @@ export const useBookStore = defineStore({
     books: [] as Book[],
     book: INITIAL_STATE,
   }),
-  getters: {},
+  getters: {
+    getBooksByCategoryId: state => (categoryId: string) => {
+      // if (state.books.length > 0) {
+      return state.books.filter(book => book.categoryId === categoryId);
+      // }
+    },
+  },
   actions: {
     async createBook(bookData: BOOK_DATA) {
       try {
