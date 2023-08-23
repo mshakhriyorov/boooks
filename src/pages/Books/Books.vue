@@ -88,7 +88,7 @@
 
 <script lang="ts">
 import { ref, type PropType, defineComponent } from 'vue';
-import router from '@/router';
+import { router } from '@/router';
 
 import Book from '@/components/Book/Book.vue';
 

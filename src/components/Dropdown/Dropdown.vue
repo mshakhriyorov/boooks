@@ -51,7 +51,7 @@ import EditSvg from '@/assets/icons/EditSvg.vue';
 import type { Category } from '@/types/category';
 import { handleRoute } from '@/utils/handleRoute';
 
-import router from '@/router';
+import { router } from '@/router';
 import { useCategoryStore } from '@/stores/category';
 
 export default defineComponent({

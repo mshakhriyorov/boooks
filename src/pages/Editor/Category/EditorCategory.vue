@@ -50,7 +50,7 @@ import Vue, { computed, defineComponent, reactive, ref, watch } from 'vue';
 import { handleRoute } from '@/utils/handleRoute';
 
 import { useCategoryStore } from '@/stores/category';
-import router from '@/router';
+import { router } from '@/router';
 
 const INITIAL_EDITOR_DATA = {
   name: '',
