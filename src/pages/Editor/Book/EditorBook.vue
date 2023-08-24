@@ -1,9 +1,9 @@
 <template>
-  <form class="p-4 ring-1 rounded" @submit.prevent="handleCreate">
+  <form class="p-4 ring-1 rounded" @submit.prevent="handleSubmit">
     <div class="space-y-12">
       <div class="border-b border-gray-900/10 pb-12">
         <h2 class="text-base text-xl font-semibold leading-7 text-white-900">
-          Add a book
+          {{ title }} a book
         </h2>
 
         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
@@ -84,12 +84,13 @@
 </template>
 
 <script lang="ts">
-import Vue, { defineComponent, reactive, ref } from 'vue';
+import Vue, { computed, defineComponent, reactive, ref } from 'vue';
 
 import { handleRoute } from '@/utils/handleRoute';
 
 import { useBookStore } from '@/stores/books';
 import { useCategoryStore } from '@/stores/category';
+import { router } from '@/router';
 
 const INITIAL_EDITOR_DATA = {
   name: '',
@@ -102,10 +103,26 @@ const INITIAL_EDITOR_DATA = {
 export default defineComponent({
   name: 'EditorBook',
   setup() {
-    const bookData = reactive(INITIAL_EDITOR_DATA);
     const bookStore = useBookStore();
     const categoryStore = useCategoryStore();
-    const isCreating = ref(false);
+    const bookEditData = reactive({ name: bookStore.book.name, description: bookStore.book.description, author: bookStore.book.author, year: bookStore.book.year, categoryId: bookStore.book.categoryId })
+    const bookCreateData = reactive(INITIAL_EDITOR_DATA);
+
+    const isCreating = () => {
+      if (router.currentRoute.params.type === 'create') {
+        return true
+      } else {
+        return false
+      }
+    };
+    const title = computed(() => {
+      if (isCreating()) {
+        return 'Create';
+      } else {
+        return 'Edit'
+      }
+    })
+    const bookData = isCreating() ? bookCreateData : bookEditData;
 
 
     const handleCancel = () => {
@@ -119,7 +136,7 @@ export default defineComponent({
 
     const onSuccess = (response: any) => {
       if (response.status === 200) {
-        if (isCreating) {
+        if (isCreating()) {
           Vue.swal('Muvaffaqiyatli yaratildi!')
         } else {
           Vue.swal('Muvaffaqiyatli tahrirlandi!');
@@ -129,12 +146,40 @@ export default defineComponent({
       }
     }
 
-    const handleCreate = async () => {
-      const response = await bookStore.createBook(bookData);
-      onSuccess(response);
-    }
+    const handleSubmit = async () => {
+      if (isCreating()) {
+        const response = await bookStore.createBook(bookData);
+        onSuccess(response);
+      } else {
+        if (categoryStore.category) {
+          const response = await bookStore.updateBook({ bookId: bookStore.book.id, bookData });
+          onSuccess(response);
+        }
+      }
+    };
 
-    return { bookData, categoryStore, bookStore, handleCancel, handleCreate };
+    return { bookData, categoryStore, bookEditData, bookStore, title, handleCancel, handleSubmit };
+  },
+  watch: {
+    'router.currentRoute.query.id': {
+      handler() {
+        this.bookStore.fetchBook(router.currentRoute.query.id?.toString());
+      },
+      immediate: true
+    },
+    'bookStore.book': {
+      handler() {
+        this.bookEditData.name = this.bookStore.book.name;
+        this.bookEditData.description = this.bookStore.book.description;
+        this.bookEditData.author = this.bookStore.book.author;
+        this.bookEditData.year = this.bookStore.book.year;
+        this.bookEditData.categoryId = this.bookStore.book.categoryId;
+      },
+      immediate: true
+    },
+  },
+  mounted() {
+    this.bookStore.fetchBook(router.currentRoute.query.id?.toString());
   },
 });
 </script>

@@ -104,14 +104,13 @@ export default defineComponent({
         onSuccess(response);
       } else {
         if (categoryStore.category) {
-          const response = await categoryStore.updateCategory({ categoryId: categoryStore.category.id, categoryData: categoryData });
+          const response = await categoryStore.updateCategory({ categoryId: categoryStore.category.id, categoryData });
           onSuccess(response);
         }
       }
-
     };
 
-    return { categoryStore, title, categoryEditData, categoryCreateData, handleSubmit, handleCancel, categoryData };
+    return { categoryStore, title, categoryEditData, categoryData, handleSubmit, handleCancel, };
   },
   watch: {
     'router.currentRoute.query.id': {

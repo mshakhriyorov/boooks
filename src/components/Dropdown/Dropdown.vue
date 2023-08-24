@@ -20,11 +20,11 @@
           <span>{{ option.name }}</span>
           <span class="dropdown__item-actions">
             <div class="rounded-lg text-white backdrop-blur cursor-pointer flex gap-2">
-              <div @click.stop.prevent="() => handleOpenEditor(option.id.toString())"
+              <div @click.stop.prevent="() => handleOpenEditor(option.id)"
                 class="p-1 rounded-lg text-white backdrop-blur cursor-pointer flex bg-gray-300 hover:bg-gray-400">
                 <EditSvg />
               </div>
-              <div @click.stop.prevent="handleDeleteCategory(option.id.toString())"
+              <div @click.stop.prevent="handleDeleteCategory(option.id)"
                 class="p-1 rounded-lg text-white backdrop-blur cursor-pointer flex bg-gray-300 hover:bg-gray-400">
                 <DeleteSvg2 />
               </div>
@@ -77,13 +77,14 @@ export default defineComponent({
       handleRoute(`/category/${id}`);
       this.isOpenDropdown = false;
     },
-    handleOpenEditor(id: string) {
+    handleOpenEditor(id: number) {
       this.categoryStore.fetchCategory(id);
-      if (router.currentRoute.query.id !== id) {
-        router.push({ path: '/category/editor/edit', query: { id } })
+      const stringId = id.toString()
+      if (router.currentRoute.query.id !== stringId) {
+        router.push({ path: '/category/editor/edit', query: { id: stringId } })
       }
     },
-    handleDeleteCategory(id: string) {
+    handleDeleteCategory(id: number) {
       this.categoryStore.removeCategory(id);
     }
   },

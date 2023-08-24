@@ -13,7 +13,7 @@ const SWEET_ALERT_OPTIONS = {
 };
 
 const INITIAL_STATE: Category = {
-  id: '',
+  id: 0,
   name: '',
   description: '',
 };
@@ -25,7 +25,7 @@ export const useCategoryStore = defineStore({
     category: INITIAL_STATE,
   }),
   getters: {
-    getCategoryById: state => (id: string) =>
+    getCategoryById: state => (id: number) =>
       state.categories.find(category => category.id === id),
   },
   actions: {
@@ -55,7 +55,7 @@ export const useCategoryStore = defineStore({
       categoryId,
       categoryData,
     }: {
-      categoryId: string | number;
+      categoryId:  number;
       categoryData: Object;
     }) {
       try {
@@ -70,7 +70,7 @@ export const useCategoryStore = defineStore({
         return error.response.data;
       }
     },
-    async fetchCategory(categoryId: string) {
+    async fetchCategory(categoryId: string | number) {
       try {
         const response = await axiosInstance.get(`/category/${categoryId}`);
 
@@ -81,7 +81,7 @@ export const useCategoryStore = defineStore({
         return error.response.data;
       }
     },
-    async removeCategory(categoryId: string) {
+    async removeCategory(categoryId: number) {
       Vue.swal(SWEET_ALERT_OPTIONS).then(async (result: any) => {
         if (result.value) {
           try {
