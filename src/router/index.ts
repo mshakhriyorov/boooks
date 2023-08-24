@@ -38,17 +38,23 @@ export const router = new VueRouter({
           component: () => import('@/pages/Books/Books.vue'),
         },
         {
+          path: 'saved',
+          name: 'saved-books',
+          props: true,
+          component: () => import('@/pages/Books/Saved/SavedBooks.vue'),
+        },
+        {
+          path: 'searched',
+          name: 'searched-books',
+          props: true,
+          component: () => import('@/pages/Books/Search/SearchBooks.vue'),
+        },
+        {
           path: '',
           props: true,
           name: 'books-with-categories',
           component: () =>
             import('@/pages/Books/Categories/BooksCategories.vue'),
-        },
-        {
-          path: 'saved',
-          name: 'saved-books',
-          props: true,
-          component: () => import('@/pages/Books/Saved/SavedBooks.vue'),
         },
       ],
       meta: { requiresAuth: true },

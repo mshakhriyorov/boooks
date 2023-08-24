@@ -28,6 +28,7 @@ export const useBookStore = defineStore({
   state: () => ({
     books: [] as Book[],
     savedBooks: [] as Book[],
+    searchItems: [] as Book[],
     book: INITIAL_STATE,
     pagination: {
       currentPage: 0,
@@ -61,11 +62,15 @@ export const useBookStore = defineStore({
         return error;
       }
     },
-    async fetchAllBooks(params?: { name: string; categoryId: number }) {
+    async fetchAllBooks(params?: { name: string; categoryId?: number }) {
       try {
         const response = await axiosInstance.get('/book', { params });
 
         const { itemCount, page, pageCount, take } = response.data.meta;
+
+        if (params?.name || params?.categoryId) {
+          this.searchItems = response.data.data;
+        }
 
         this.books = response.data.data;
         this.pagination.total = itemCount;

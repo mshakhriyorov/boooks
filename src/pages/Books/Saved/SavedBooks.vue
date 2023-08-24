@@ -17,7 +17,7 @@
         </div>
       </div>
       <!-- pagination buttons -->
-      <div class="w-full mt-8" v-if="savedBooks?.length > 0">
+      <div class="w-full mt-8" v-if="bookStore.savedBooks?.length > 10">
         <ul v-if="total_pages > 1" class="flex pl-0 list-none rounded my-2">
           <li
             class="leading-tight bg-stone-600 border border-gray-300 border-r-0 ml-0 rounded-l hover:bg-gray-400"
@@ -174,6 +174,7 @@ export default defineComponent({
     const total_pages = ref(bookStore.pagination.total_pages);
     const currentPage = ref(bookStore.pagination.currentPage);
     const maxVisibleButtons = ref(10);
+    const savedBooks = ref([]);
 
     return {
       per_page,
@@ -182,12 +183,8 @@ export default defineComponent({
       bookStore,
       currentPage,
       maxVisibleButtons,
+      savedBooks,
       handleRoute,
-    };
-  },
-  data() {
-    return {
-      savedBooks: [],
     };
   },
   watch: {

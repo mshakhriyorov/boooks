@@ -44,7 +44,7 @@
               </div>
             </div>
             <!-- search input -->
-            <form class="w-2/4">
+            <form class="w-2/4" @submit.prevent="handleSearch">
               <label
                 for="default-search"
                 class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white"
@@ -188,17 +188,20 @@
 import { defineComponent, ref } from 'vue';
 
 import SelectLanguage from '../SelectLanguage/SelectLanguage.vue';
+
 import Dropdown from '@/assets/icons/DropdownSvg.vue';
 import SearchSvg from '@/assets/icons/SearchSvg.vue';
 
 import './TopNavbar.scss';
 
 import { useUserStore } from '@/stores/user';
+import { useCategoryStore } from '@/stores/category';
+import { useBookStore } from '@/stores/books';
 
 import { handleRoute } from '../../utils/handleRoute';
 import { generateProfileLogo } from '../../utils/generateProfileLogo';
-import { useCategoryStore } from '@/stores/category';
-import { useBookStore } from '@/stores/books';
+
+import { router } from '@/router';
 
 export default defineComponent({
   name: 'TopNavbar',
@@ -217,6 +220,7 @@ export default defineComponent({
       searchValue,
       bookStore,
       categoryStore,
+      router,
       handleRoute,
       generateProfileLogo,
     };
@@ -237,6 +241,12 @@ export default defineComponent({
     },
     handleCloseModal() {
       this.showMenu = false;
+    },
+    handleSearch() {
+      this.router.push({
+        name: 'searched-books',
+        query: { q: this.searchValue },
+      });
     },
   },
   mounted() {
