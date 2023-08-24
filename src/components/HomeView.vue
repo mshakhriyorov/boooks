@@ -1,5 +1,5 @@
 <template>
-  <div class="grid grid-cols-5 grid-flow-row gap-4 mt-5">
+  <div class="grid grid-cols-5 grid-flow-row gap-4 mt-5 scroll-smooth">
     <div class="col-span-1">
       <Sidebar />
     </div>

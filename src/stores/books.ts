@@ -1,8 +1,10 @@
-import { defineStore } from 'pinia';
-
-import axiosInstance from '@/utils/axios';
-import type { BOOK_DATA, Book } from '@/types/book';
 import Vue from 'vue';
+import { defineStore } from 'pinia';
+import axios from 'axios';
+
+import type { BOOK_DATA, Book } from '@/types/book';
+
+import axiosInstance, { CONFIG_BASE_URL } from '@/utils/axios';
 
 const INITIAL_STATE: Book = {
   id: 0,
@@ -36,6 +38,7 @@ export const useBookStore = defineStore({
       total_pages: 0,
       total: 0,
     },
+    coverImage: null as File | null,
   }),
   getters: {
     getBooksByCategoryId: state => (categoryId: number) => {
@@ -167,6 +170,39 @@ export const useBookStore = defineStore({
         console.log(error.response.data);
         return error.response.data;
       }
+    },
+    async uploadCoverImageAPI(bookId: number, file: File) {
+      try {
+        // const fileString = convertImageToBinaryString(file);
+        const formData = new FormData();
+        // formData.append('bookId', bookId.toString()); // Convert bookId to string
+        formData.append('image', file);
+
+        console.log(file);
+        
+
+        if (bookId) {
+          const response = await axios.post(
+            `${CONFIG_BASE_URL}book-file/cover/${bookId}`,
+            formData, // Use the FormData object as the request body
+            {
+              headers: {
+                Authorization:
+                  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJsYWRhbDE0MzAxMTFAZG90dmlsbGEuY29tIiwiaWF0IjoxNjkyOTAwODYwLCJleHAiOjE2OTI5ODcyNjB9.7c4oH3vVBisDLqsUFAzol2fE6H-dLXSGgkkC-xGcFpM',
+                'Content-Type': 'multipart/form-data',
+              },
+            },
+          );
+
+          return response.data;
+        }
+      } catch (error) {
+        console.log(error);
+        return error;
+      }
+    },
+    setCoverImage(file: File) {
+      this.coverImage = file;
     },
     reset() {
       this.books = [];

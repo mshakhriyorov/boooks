@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar flex flex-col">
+  <div class="sidebar flex flex-col sticky top-20">
     <button @click="handleRoute('/book/editor/create')" type="button"
       class="relative z-10 overflow-hidden focus:outline-none mb-2 flex items-center justify-between leading-loose align-middle px-4 py-1 rounded cursor-pointer text-sm bg-indigo-800 hover:bg-indigo-600 text-white">
       Add a book
