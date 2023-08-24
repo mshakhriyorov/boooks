@@ -6,6 +6,7 @@ export interface Book {
   year: number | null;
   author: string;
   description: string;
+  isSaved?: boolean
 }
 
 export interface BOOK_DATA {

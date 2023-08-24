@@ -1,9 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 
-import { products } from '@/testData/products.json';
-import { categories } from '@/testData/categories.json';
-
 import EditorBook from '../pages/Editor/Book/EditorBook.vue';
 import EditorCategory from '../pages/Editor/Category/EditorCategory.vue';
 import HomeView from '@/components/HomeView.vue';
@@ -37,16 +34,7 @@ export const router = new VueRouter({
         {
           path: 'category/:id',
           name: 'books-in-category',
-          props: route => ({
-            id: route.params.id,
-            books: products,
-            currentPage: 1,
-            pagination: {
-              per_page: 10,
-              total: 187,
-              total_pages: 19,
-            },
-          }),
+          props: true,
           component: () => import('@/pages/Books/Books.vue'),
         },
         {
@@ -59,18 +47,8 @@ export const router = new VueRouter({
         {
           path: 'saved',
           name: 'saved-books',
-          props: route => ({
-            id: route.params.id,
-            books: products,
-            currentPage: 1,
-            title: 'Saqlanganlar',
-            pagination: {
-              per_page: 10,
-              total: 187,
-              total_pages: 19,
-            },
-          }),
-          component: () => import('@/pages/Books/Books.vue'),
+          props: true,
+          component: () => import('@/pages/Books/Saved/SavedBooks.vue'),
         },
       ],
       meta: { requiresAuth: true },

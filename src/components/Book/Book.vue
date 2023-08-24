@@ -4,11 +4,12 @@
       <img :src="book.image" :alt="book.name"
         class="h-full w-full object-cover object-center group-hover:opacity-75 book__image" />
       <div class="flex justify-between items-start absolute top-0 left-0 p-2 gap-2 z-10">
-        <div class="p-2 bg-gray-300 rounded-lg text-white backdrop-blur cursor-pointer hover:bg-gray-400">
-          <SavedSvg :class="{ book__saved: isSaved }" />
+        <div @click.stop.prevent="handleSaveBook(book.id)"
+          class="p-2 bg-gray-300 rounded-lg text-white backdrop-blur cursor-pointer hover:bg-gray-400">
+          <SavedSvg :class="{ book__saved: book.isSaved }" />
         </div>
         <div class="rounded-lg text-white backdrop-blur cursor-pointer flex gap-2">
-          <div @click.stop.prevent="() => handleOpenEditor(book.id)"
+          <div @click.stop.prevent="handleOpenEditor(book.id)"
             class="p-2 rounded-lg text-white backdrop-blur cursor-pointer flex bg-gray-300 hover:bg-gray-400">
             <EditSvg />
           </div>
@@ -50,10 +51,9 @@ export default defineComponent({
     isSlider: { type: Boolean, default: false },
   },
   setup() {
-    const isSaved = true;
     const bookStore = useBookStore()
 
-    return { handleRoute, bookStore, isSaved };
+    return { handleRoute, bookStore };
   },
   methods: {
     handleOpenEditor(id: number) {
@@ -65,6 +65,9 @@ export default defineComponent({
     },
     handleDeleteBook(id: number) {
       this.bookStore.removeBook(id);
+    },
+    handleSaveBook(id: number) {
+      this.bookStore.saveBook(id)
     }
   },
   components: { SavedSvg, EditSvg, DeleteSvg },

@@ -46,6 +46,13 @@ export default defineComponent({
       },
       immediate: true
     },
+    'booksByCategoryId': {
+      handler() {
+        this.bookStore.fetchAllBooks();
+        this.bookStore.fetchAllSavedBooks();
+      },
+      immediate: true
+    }
   }
 });
 </script>
