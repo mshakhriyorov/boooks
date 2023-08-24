@@ -24,7 +24,8 @@
           <div
             class="p-2 bg-gray-800 rounded-lg text-white backdrop-blur cursor-pointer hover:bg-gray-600"
           >
-            Saqlash
+            <span v-if="isSaved">Saqlangan</span>
+            <span v-else @click.stop.prevent="handleSaveBook(book.id)">Saqlash</span>
           </div>
           <div
             class="p-2 bg-gray-800 rounded-lg text-white backdrop-blur cursor-pointer hover:bg-gray-600"
@@ -52,7 +53,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent } from 'vue';
+import { defineComponent, ref } from 'vue';
 import { storeToRefs } from 'pinia';
 
 import ArrowLeftSvg from '@/assets/icons/ArrowLeftSvg.vue';
@@ -66,12 +67,17 @@ export default defineComponent({
     const bookStore = useBookStore();
     const { book } = storeToRefs(bookStore);
     const id = router.currentRoute.params.id;
+    const isSaved = ref(false);
 
-    return { bookStore, book, id };
+    return { bookStore, book, id, isSaved };
   },
   methods: {
     handleBack() {
       window.history.length > 1 ? this.$router.go(-1) : this.$router.push('/');
+    },
+    handleSaveBook(id: number) {
+      this.isSaved = true;
+      this.bookStore.saveBook(id);
     },
   },
   watch: {

@@ -12,7 +12,7 @@ const INITIAL_STATE: Book = {
   author: '',
   name: '',
   description: '',
-  isSaved: false
+  isSaved: false,
 };
 
 const SWEET_ALERT_OPTIONS = {
@@ -33,8 +33,8 @@ export const useBookStore = defineStore({
       currentPage: 0,
       per_page: 0,
       total_pages: 0,
-      total: 0
-    }
+      total: 0,
+    },
   }),
   getters: {
     getBooksByCategoryId: state => (categoryId: number) => {
@@ -42,10 +42,12 @@ export const useBookStore = defineStore({
     },
     booksWithSavedStatus(state) {
       return state.books.map(book => {
-        const isSaved = state.savedBooks.some(savedBook => savedBook.id === book.id);
+        const isSaved = state.savedBooks.some(
+          savedBook => savedBook.id === book.id,
+        );
         return { ...book, isSaved };
       });
-    }
+    },
   },
   actions: {
     async createBook(bookData: BOOK_DATA) {
@@ -59,7 +61,7 @@ export const useBookStore = defineStore({
         return error;
       }
     },
-    async fetchAllBooks(params?: { name: string, categoryId: number }) {
+    async fetchAllBooks(params?: { name: string; categoryId: number }) {
       try {
         const response = await axiosInstance.get('/book', { params });
 
@@ -94,10 +96,7 @@ export const useBookStore = defineStore({
       bookData: Object;
     }) {
       try {
-        const response = await axiosInstance.put(
-          `/book/${bookId}`,
-          bookData,
-        );
+        const response = await axiosInstance.put(`/book/${bookId}`, bookData);
 
         return response.data;
       } catch (error: any) {
@@ -109,9 +108,7 @@ export const useBookStore = defineStore({
       Vue.swal(SWEET_ALERT_OPTIONS).then(async (result: any) => {
         if (result.value) {
           try {
-            const response = await axiosInstance.delete(
-              `/book/${bookId}`,
-            );
+            const response = await axiosInstance.delete(`/book/${bookId}`);
 
             if (response.data.status === 200) {
               Vue.swal("Kitob o'chirildi!");
@@ -130,7 +127,9 @@ export const useBookStore = defineStore({
       try {
         const response = await axiosInstance.post(`/favorite/${bookId}`);
 
-        this.savedBooks = [...this.savedBooks, response.data.data];
+        if (this.savedBooks.some(book => book.id !== bookId)) {
+          this.savedBooks = [...this.savedBooks, response.data.data];
+        }
         return response.data;
       } catch (error) {
         console.log(error);
@@ -139,9 +138,7 @@ export const useBookStore = defineStore({
     },
     async removeSavedBook(bookId: number) {
       try {
-        const response = await axiosInstance.delete(
-          `/favorite/${bookId}`,
-        );
+        const response = await axiosInstance.delete(`/favorite/${bookId}`);
 
         this.savedBooks.filter(book => book.id !== bookId);
         return response;
@@ -150,7 +147,7 @@ export const useBookStore = defineStore({
         return error.response.data;
       }
     },
-    async fetchAllSavedBooks(params?: { name: string, categoryId: number }) {
+    async fetchAllSavedBooks(params?: { name: string; categoryId: number }) {
       try {
         const response = await axiosInstance.get('/favorite', { params });
 
