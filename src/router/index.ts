@@ -4,8 +4,13 @@ import VueRouter from 'vue-router';
 import EditorBook from '../pages/Editor/Book/EditorBook.vue';
 import EditorCategory from '../pages/Editor/Category/EditorCategory.vue';
 import HomeView from '@/components/HomeView.vue';
+import { createPinia, PiniaVuePlugin } from 'pinia';
+import { useUserStore } from '@/stores/user';
 
+Vue.use(PiniaVuePlugin);
 Vue.use(VueRouter);
+
+export const createdPinia = createPinia();
 
 export const router = new VueRouter({
   mode: 'history',
@@ -73,18 +78,24 @@ export const router = new VueRouter({
 });
 
 // redirect in case of authorization
-router.beforeEach((to, _from, next) => {
+router.beforeEach(async (to, _from, next) => {
+  const userStore = useUserStore()
+  const token = localStorage.getItem('token');
   // check if the route requires authentication
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    const token = localStorage.getItem('token');
+    await userStore.fetchMe();
 
-    if (token) {
+    if (token && userStore.user.id) {
       next();
     } else {
       next({ name: 'signIn' });
     }
   } else {
-    // if route does not require authentication, allow access
-    next();
+    // if user is already authenticated
+    if (token && (to.name === 'signIn' || to.name === 'signUp')) {
+      next({ name: 'books-with-categories' });
+    } else {
+      next();
+    }
   }
 });

@@ -2,7 +2,7 @@ export interface Book {
   id: number;
   categoryId: number;
   name: string;
-  image: string;
+  files: Array;
   year: number | null;
   author: string;
   description: string;

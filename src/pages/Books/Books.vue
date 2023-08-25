@@ -217,7 +217,7 @@ export default defineComponent({
         );
       }
     },
-    'this.bookStore.books': {
+    'bookStore.books': {
       async handler() {
         await this.bookStore.fetchAllBooks();
         this.filteredBooks = this.bookStore.getBooksByCategoryId(

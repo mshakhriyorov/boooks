@@ -10,7 +10,7 @@ import axiosInstance, { CONFIG_BASE_URL } from '@/utils/axios';
 const INITIAL_STATE: Book = {
   id: 0,
   categoryId: 0,
-  image: '',
+  files: [],
   year: null,
   author: '',
   name: '',
@@ -174,27 +174,29 @@ export const useBookStore = defineStore({
     },
     async uploadCoverImageAPI(bookId: number, file: File) {
       try {
-        // const fileString = convertImageToBinaryString(file);
+        const token = localStorage.getItem('token');
         const formData = new FormData();
-        // formData.append('bookId', bookId.toString()); // Convert bookId to string
         formData.append('image', file);
 
-        console.log(file);
+        for (let [key, value] of formData.entries()) {
+          console.log(key, value);
+        }
         
 
         if (bookId) {
           const response = await axios.post(
             `${CONFIG_BASE_URL}book-file/cover/${bookId}`,
-            formData, // Use the FormData object as the request body
+            formData, 
             {
               headers: {
                 Authorization:
-                  'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6NSwiZW1haWwiOiJsYWRhbDE0MzAxMTFAZG90dmlsbGEuY29tIiwiaWF0IjoxNjkyOTAwODYwLCJleHAiOjE2OTI5ODcyNjB9.7c4oH3vVBisDLqsUFAzol2fE6H-dLXSGgkkC-xGcFpM',
+                  `Bearer ${token}`,
                 'Content-Type': 'multipart/form-data',
               },
             },
           );
 
+          
           return response.data;
         }
       } catch (error) {

@@ -124,12 +124,6 @@ export default defineComponent({
     $route(_to, _from) {
       this.bookStore.fetchAllSavedBooks();
     },
-    'this.bookStore.savedBooks': {
-      handler() {
-        this.bookStore.fetchAllSavedBooks();
-      },
-      immediate: true,
-    },
   },
   computed: {
     isInFirstPage() {
