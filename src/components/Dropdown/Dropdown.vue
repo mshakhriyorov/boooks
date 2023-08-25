@@ -54,6 +54,8 @@ import { handleRoute } from '@/utils/handleRoute';
 import { router } from '@/router';
 import { useCategoryStore } from '@/stores/category';
 
+import type { TranslateResult } from "vue-i18n";
+
 export default defineComponent({
   name: 'Dropdown',
   props: {

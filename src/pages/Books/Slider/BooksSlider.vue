@@ -9,7 +9,7 @@
     <div class="flex justify-end" v-if="booksByCategoryId?.length > 3" @click="handleRoute(`/category/${categoryId}`)"
       aria-hidden="true">
       <span class="p-2 bg-gray-800 rounded-lg text-white backdrop-blur cursor-pointer hover:bg-gray-600">
-        Ko'proq ko'ring...
+        {{ $t('BookSlider.more') }}...
       </span>
     </div>
   </div>

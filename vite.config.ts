@@ -12,7 +12,6 @@ export default defineConfig({
       targets: ['ie >= 11'],
       additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
     }),
- 
   ],
   resolve: {
     alias: {

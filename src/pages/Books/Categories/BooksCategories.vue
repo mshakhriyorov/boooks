@@ -6,8 +6,9 @@
       </div>
     </div>
     <h2 v-else class="text-center flex flex-col items-center gap-2">
-      <span>Hech qanday kitob topilmadi. Hoziroq javonga kitob</span>
-      <span @click="handleRoute('/book/editor/create')" class="bg-gray-800 w-20 p-1 rounded cursor-pointer hover:bg-gray-600">qo'shing!</span>
+      <span> {{ $t('BooksCategories.empty') }} </span>
+      <span @click="handleRoute('/book/editor/create')"
+        class="bg-gray-800 w-20 p-1 rounded cursor-pointer hover:bg-gray-600">{{ $t('BooksCategories.add') }}</span>
     </h2>
   </div>
 </template>

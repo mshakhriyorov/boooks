@@ -1,0 +1,76 @@
+{
+    "SignIn": {
+        "signInYourAccount": "Войдите в свой аккаунт",
+        "or": "или",
+        "create": "Cоздайте новый аккаунт",
+        "email": "Электронная почта",
+        "signIn": "Войти",
+        "signUp": "Зарегистрироваться",
+        "logout": "Выйти"
+    },
+    "TopNavbar": {
+        "saved": "Сохранено",
+        "search": "Поиск"
+    },
+    "Sidebar": {
+        "addBook": "Добавить книгу",
+        "createCategory": "Создать категорию",
+        "categories": "Категории"
+    },
+    "EditorBook": {
+        "addBook": "Добавить книгу",
+        "editBook": "Редактирование книг",
+        "bookName": "Название книги",
+        "setAuthor": "Введите автора",
+        "published": "Когда оно было опубликовано?",
+        "selectCategory": "Выберите категорию",
+        "coverPhoto": "Обложка",
+        "description": "Описание",
+        "uploadFile": "Загрузите файл",
+        "orPaste": "или поместите это здесь",
+        "fileFormat": "PNG, JPG, JPEG до 10 МБ",
+        "save": "Сохранять",
+        "cancel": "Отмена"
+    },
+    "EditorCategory": {
+        "createCategory": "Создать категорию",
+        "editCategory": "Изменить категорию",
+        "description": "Описание",
+        "categoryName": "Название категории",
+        "save": "Сохранять",
+        "cancel": "Отмена"
+    },
+    "swal": {
+        "successCreate": "Успешно создано!",
+        "successEdit": "Отредактировано успешно!",
+        "categoryDeleted": "Категория удалена!",
+        "bookDeleted": "Книга удалена!",
+        "deleteAlertBook": "Удалить эту книгу?",
+        "deleteAlertCategory": "Удалить эту категорию?",
+        "deleteConfirm": "Да, удалите!"
+    },
+    "BookModal": {
+        "save": "Сохранять",
+        "saved": "Сохранено",
+        "download": "Скачать",
+        "author": "Автор",
+        "year": "Год издания",
+        "description": "Описание",
+        "back": "Назад"
+    },
+    "BookSlider": {
+        "more": "Посмотреть больше"
+    },
+    "BooksCategories": {
+        "empty": "Книги не найдены. Книгу на полку прямо сейчас",
+        "add": "Добавьте"
+    },
+    "SearchBooks": {
+        "foundBooks": "Результаты поиска найдены: ",
+        "notFoundBooks": "Результаты поиска не найдены!"
+    },
+    "SavedBooks": {
+        "noSavedBooks": "Нет сохраненных книг!",
+        "saved": "Сохранено"
+    }
+}

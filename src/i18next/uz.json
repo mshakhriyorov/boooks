@@ -1,0 +1,76 @@
+{
+    "SignIn": {
+        "signInYourAccount": "Mavjud hisobingizga kiring",
+        "or": "yoki",
+        "create": "Yangi hisob yarating",
+        "email": "Email",
+        "signIn": "Kirish",
+        "signUp": "Ro'yxatdan o'tish",
+        "logout": "Chiqish"
+    },
+    "TopNavbar": {
+        "saved": "Saqlanganlar",
+        "search": "Qidirish"
+    },
+    "Sidebar": {
+        "addBook": "Kitob qo'shish",
+        "createCategory": "Kategoriya yaratish",
+        "categories": "Kategoriyalar"
+    },
+    "EditorBook": {
+        "addBook": "Kitob qo'shish",
+        "editBook": "Kitobni tahrirlash",
+        "bookName": "Kitob nomi",
+        "setAuthor": "Avtorni kiriting",
+        "published": "Qachon chop etilgan?",
+        "selectCategory": "Kategoriyasini tanlang",
+        "coverPhoto": "Muqova sur'ati",
+        "description": "Tavsif",
+        "uploadFile": "Fayl yuklang",
+        "orPaste": "yoki shu yerga qo'ying",
+        "fileFormat": "10MB gacha PNG, JPG, JPEG",
+        "save": "Saqlash",
+        "cancel": "Bekor qilish"
+    },
+    "EditorCategory": {
+        "createCategory": "Kategoriya yaratish",
+        "editCategory": "Kategoriyani tahrirlash",
+        "categoryName": "Kategoriya nomi",
+        "description": "Tavsif",
+        "save": "Saqlash",
+        "cancel": "Bekor qilish"
+    },
+    "swal": {
+        "successCreate": "Muvaffaqiyatli yaratildi!",
+        "successEdit": "Muvaffaqiyatli tahrirlandi!",
+        "categoryDeleted": "Kategoriya o'chirildi!",
+        "bookDeleted": "Kitob o'chirildi!",
+        "deleteAlertBook": "Ushbu kitob o'chirilsinmi?",
+        "deleteAlertCategory": "Ushbu kategoriya o'chirilsinmi?",
+        "deleteConfirm": "Ha, o'chirilsin!"
+    },
+    "BookModal": {
+        "save": "Saqlash",
+        "saved": "Saqlangan",
+        "download": "Yuklab olish",
+        "author": "Muallif",
+        "year": "Nashr etilgan yili",
+        "description": "Tavsif",
+        "back": "Orqaga"
+    },
+    "BookSlider": {
+        "more": "Ko'proq ko'ring"
+    },
+    "BooksCategories": {
+        "empty": "Hech qanday kitob topilmadi. Hoziroq javonga kitob",
+        "add": "Qo'shing"
+    },
+    "SearchBooks": {
+        "foundBooks": "Qidiruv natijalari bo'yicha topildi: ",
+        "notFoundBooks": "Qidiruv bo'yicha hech narsa topilmadi!"
+    },
+    "SavedBooks": {
+        "noSavedBooks": "Saqlangan kitoblar yo'q!",
+        "saved": "Saqlanganlar"
+    }
+}

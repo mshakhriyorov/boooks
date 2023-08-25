@@ -6,46 +6,33 @@
       </h2>
       <div
         class="p-2 rounded-md bg-indigo-900 text-white cursor-pointer flex items-center flex-row gap-2 hover:bg-indigo-700"
-        @click="handleBack"
-      >
-        <ArrowLeftSvg /> Orqaga
+        @click="handleBack">
+        <ArrowLeftSvg /> {{ $t('BookModal.back') }}
       </div>
     </div>
     <div class="flex gap-2">
       <div class="relative">
-        <img
-          :src="book.image"
-          :alt="book.name"
-          class="book-model__image rounded"
-        />
-        <div
-          class="flex justify-between items-center absolute bottom-2 left-2 gap-2"
-        >
-          <div
-            class="p-2 bg-gray-800 rounded-lg text-white backdrop-blur cursor-pointer hover:bg-gray-600"
-          >
-            <span v-if="isSaved">Saqlangan</span>
-            <span v-else @click.stop.prevent="handleSaveBook(book.id)">Saqlash</span>
+        <img :src="book.image" :alt="book.name" class="book-model__image rounded" />
+        <div class="flex justify-between items-center absolute bottom-2 left-2 gap-2">
+          <div class="p-2 bg-gray-800 rounded-lg text-white backdrop-blur cursor-pointer hover:bg-gray-600">
+            <span v-if="isSaved">{{ $t('BookModal.saved') }}</span>
+            <span v-else @click.stop.prevent="handleSaveBook(book.id)">{{ $t('BookModal.save') }}</span>
           </div>
-          <div
-            class="p-2 bg-gray-800 rounded-lg text-white backdrop-blur cursor-pointer hover:bg-gray-600"
-          >
-            Yuklab olish
+          <div class="p-2 bg-gray-800 rounded-lg text-white backdrop-blur cursor-pointer hover:bg-gray-600">
+            {{ $t('BookModal.download') }}
           </div>
         </div>
       </div>
-      <div
-        class="border border-gray-800 w-full p-10 rounded flex flex-col gap-6"
-      >
+      <div class="border border-gray-800 w-full p-10 rounded flex flex-col gap-6">
         <div class="text-xl text-gray-600 flex flex-col">
-          Muallif: <span class="text-gray-400">{{ book.author }}</span>
+          {{ $t('BookModal.author') }}: <span class="text-gray-400">{{ book.author }}</span>
         </div>
         <div class="text-xl text-gray-600 flex flex-col">
-          Nashr etilgan yili:
+          {{ $t('BookModal.year') }}
           <span class="text-gray-400">{{ book.year }}</span>
         </div>
         <div class="text-xl text-gray-600 flex flex-col">
-          Tavsif: <span class="text-gray-400">{{ book.description }}</span>
+          {{ $t('BookModal.description') }}: <span class="text-gray-400">{{ book.description }}</span>
         </div>
       </div>
     </div>

@@ -4,7 +4,7 @@
     <div class="max-w-md w-full space-y-8">
       <div>
         <h2 class="mt-6 text-center text-3xl font-extrabold">
-          Create a new account
+          {{ $t("SignIn.create") }}
         </h2>
       </div>
       <form class="mt-8 space-y-6" action="#" method="POST" @submit.prevent="handleSubmit">
@@ -43,7 +43,7 @@
             <span class="absolute left-0 inset-y-0 flex items-center pl-3">
               <Lock />
             </span>
-            Sign up
+            {{ $t("SignIn.signUp") }}
           </button>
         </div>
       </form>

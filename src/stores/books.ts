@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import { defineStore } from 'pinia';
 import axios from 'axios';
+import { translate } from '@/i18next'
 
 import type { BOOK_DATA, Book } from '@/types/book';
 
@@ -18,11 +19,11 @@ const INITIAL_STATE: Book = {
 };
 
 const SWEET_ALERT_OPTIONS = {
-  title: "Ushbu kitob o'chirilsinmi?",
+  title: translate("swal.deleteAlertBook"),
   type: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
-  confirmButtonText: "Ha, o'chirilsin!",
+  confirmButtonText: translate("swal.deleteConfirm") as string,
 };
 
 export const useBookStore = defineStore({
@@ -119,7 +120,7 @@ export const useBookStore = defineStore({
             const response = await axiosInstance.delete(`/book/${bookId}`);
 
             if (response.data.status === 200) {
-              Vue.swal("Kitob o'chirildi!");
+              Vue.swal(`${translate("swal.bookDeleted")}`);
               this.fetchAllBooks();
               this.fetchAllSavedBooks();
               this.books.filter(book => book.id !== bookId);

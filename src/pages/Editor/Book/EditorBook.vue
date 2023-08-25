@@ -3,101 +3,59 @@
     <div class="space-y-12">
       <div class="border-b border-gray-900/10 pb-12">
         <h2 class="text-base text-xl font-semibold leading-7 text-white-900">
-          {{ title }} a book
+          {{ title }}
         </h2>
 
         <div class="mt-10 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-6">
           <div class="sm:col-span-4">
-            <label
-              for="bookname"
-              class="block text-sm font-medium leading-6 text-white-900"
-              >Book name</label
-            >
+            <label for="bookname" class="block text-sm font-medium leading-6 text-white-900">
+              {{ $t("EditorBook.bookName") }}</label>
             <div class="mt-2">
               <div
-                class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md p-1"
-              >
-                <input
-                  v-model="bookData.name"
-                  type="text"
-                  name="bookname"
-                  id="bookname"
+                class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md p-1">
+                <input v-model="bookData.name" type="text" name="bookname" id="bookname"
                   class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-white-400 placeholder:text-white-900 focus:ring-0 sm:text-sm sm:leading-6"
-                  placeholder="Tinchlik"
-                  required
-                />
+                  placeholder="Tinchlik" required />
               </div>
             </div>
           </div>
 
           <div class="sm:col-span-4">
-            <label
-              for="author"
-              class="block text-sm font-medium leading-6 text-white-900"
-            >
-              Set author
+            <label for="author" class="block text-sm font-medium leading-6 text-white-900">
+              {{ $t("EditorBook.setAuthor") }}
             </label>
             <div class="mt-2">
               <div
-                class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md p-1"
-              >
-                <input
-                  v-model="bookData.author"
-                  type="text"
-                  name="author"
-                  id="author"
+                class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md p-1">
+                <input v-model="bookData.author" type="text" name="author" id="author"
                   class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-white-900 placeholder:text-white-400 focus:ring-0 sm:text-sm sm:leading-6"
-                  placeholder="Abdulla Qodiriy"
-                  required
-                />
+                  placeholder="Abdulla Qodiriy" required />
               </div>
             </div>
           </div>
 
           <div class="sm:col-span-4">
-            <label
-              for="year"
-              class="block text-sm font-medium leading-6 text-white-900"
-            >
-              When was it published?
+            <label for="year" class="block text-sm font-medium leading-6 text-white-900">
+              {{ $t("EditorBook.published") }}
             </label>
             <div class="mt-2">
               <div
-                class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md p-1"
-              >
-                <input
-                  v-model="bookData.year"
-                  type="number"
-                  name="year"
-                  id="year"
+                class="flex rounded-md shadow-sm ring-1 ring-inset ring-gray-300 focus-within:ring-2 focus-within:ring-inset focus-within:ring-indigo-600 sm:max-w-md p-1">
+                <input v-model="bookData.year" type="number" name="year" id="year"
                   class="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-white-900 placeholder:text-white-400 focus:ring-0 sm:text-sm sm:leading-6"
-                  placeholder="2002"
-                  required
-                />
+                  placeholder="2002" required />
               </div>
             </div>
           </div>
 
           <div class="sm:col-span-3">
-            <label
-              for="categoryId"
-              class="block text-sm font-medium leading-6 text-white-900"
-              >Select a category</label
-            >
+            <label for="categoryId" class="block text-sm font-medium leading-6 text-white-900">
+              {{ $t("EditorBook.selectCategory") }}</label>
             <div class="mt-2">
-              <select
-                v-model="bookData.categoryId"
-                id="categoryId"
-                name="categoryId"
-                autocomplete="category-id"
-                class="block w-full bg-transparent cursor-pointer rounded-md border-0 py-1.5 text-white-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6"
-              >
-                <option
-                  v-for="(cat, _index) in categoryStore.categories"
-                  :key="cat.id"
-                  :value="cat.id.toString()"
-                  class="bg-gray-800 cursor-pointer"
-                >
+              <select v-model="bookData.categoryId" id="categoryId" name="categoryId" autocomplete="category-id"
+                class="block w-full bg-transparent cursor-pointer rounded-md border-0 py-1.5 text-white-900 shadow-sm ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:max-w-xs sm:text-sm sm:leading-6">
+                <option v-for="(cat, _index) in categoryStore.categories" :key="cat.id" :value="cat.id.toString()"
+                  class="bg-gray-800 cursor-pointer">
                   {{ cat.name }}
                 </option>
               </select>
@@ -105,62 +63,36 @@
           </div>
 
           <div class="col-span-full">
-            <label
-              for="cover-photo"
-              class="block text-sm font-medium leading-6 text-white-900"
-              >Cover photo</label
-            >
+            <label for="cover-photo" class="block text-sm font-medium leading-6 text-white-900">
+              {{ $t("EditorBook.coverPhoto") }}</label>
             <div
-              class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 rounded-md"
-            >
+              class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-inset focus:ring-indigo-600 rounded-md">
               <div class="text-center flex flex-col items-center">
-                <div
-                  class="mt-4 flex items-center text-sm leading-6 text-gray-600"
-                >
-                  <label
-                    for="file-upload"
-                    class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500 p-1"
-                  >
-                    <span>Fayl yuklang</span>
-                    <input
-                      @change="handleImageUpload"
-                      id="file-upload"
-                      name="file-upload"
-                      type="file"
-                      class="sr-only"
-                      accept="image/*"
-                    />
+                <div class="mt-4 flex items-center text-sm leading-6 text-gray-600">
+                  <label for="file-upload"
+                    class="relative cursor-pointer rounded-md bg-white font-semibold text-indigo-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500 p-1">
+                    <span>{{ $t("EditorBook.uploadFile") }}</span>
+                    <input @change="handleImageUpload" id="file-upload" name="file-upload" type="file" class="sr-only"
+                      accept="image/*" />
                   </label>
-                  <p class="pl-1">yoki shu yerga tashlang</p>
+                  <p class="pl-1">{{ $t("EditorBook.orPaste") }}</p>
                 </div>
                 <p class="text-xs leading-5 text-gray-600">
-                  10MB gacha PNG, JPG, GIF
+                  {{ $t("EditorBook.fileFormat") }}
                 </p>
-                <span
-                  v-if="bookStore.coverImage"
-                  class="p-1 rounded-md text-indigo-600 bg-gray-800"
-                  >{{ bookStore.coverImage?.name }}</span
-                >
+                <span v-if="bookStore.coverImage" class="p-1 rounded-md text-indigo-600 bg-gray-800">{{
+                  bookStore.coverImage?.name }}</span>
               </div>
             </div>
           </div>
 
           <div class="col-span-full">
-            <label
-              for="about"
-              class="block text-sm font-medium leading-6 text-white-900"
-              >Description</label
-            >
+            <label for="about" class="block text-sm font-medium leading-6 text-white-900">
+              {{ $t("EditorBook.description") }}</label>
             <div class="mt-2">
-              <textarea
-                v-model="bookData.description"
-                id="about"
-                name="about"
-                rows="3"
+              <textarea v-model="bookData.description" id="about" name="about" rows="3"
                 class="block w-full rounded-md border-0 py-1.5 text-white-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-white-400 focus:ring-2 bg-transparent focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                placeholder="Write a few sentences about the category."
-                required
-              />
+                placeholder="Write a few sentences about the category." required />
             </div>
           </div>
         </div>
@@ -168,25 +100,21 @@
     </div>
 
     <div class="mt-6 flex items-center justify-end gap-x-6">
-      <button
-        @click.prevent="handleCancel"
-        type="button"
-        class="rounded-md bg-red-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-800"
-      >
-        Cancel
+      <button @click.prevent="handleCancel" type="button"
+        class="rounded-md bg-red-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-red-600 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-red-800">
+        {{ $t("EditorBook.cancel") }}
       </button>
-      <button
-        type="submit"
-        class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-      >
-        Save
+      <button type="submit"
+        class="rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
+        {{ $t("EditorBook.save") }}
       </button>
     </div>
   </form>
 </template>
 
 <script lang="ts">
-import Vue, { computed, defineComponent, reactive, ref } from 'vue';
+import Vue, { defineComponent, reactive } from 'vue';
+import { translate } from '@/i18next'
 
 import { handleRoute } from '@/utils/handleRoute';
 
@@ -223,13 +151,6 @@ export default defineComponent({
         return false;
       }
     };
-    const title = computed(() => {
-      if (isCreating()) {
-        return 'Create';
-      } else {
-        return 'Edit';
-      }
-    });
     const bookData = isCreating() ? bookCreateData : bookEditData;
 
     const handleCancel = () => {
@@ -244,9 +165,9 @@ export default defineComponent({
     const onSuccess = async (response: any) => {
       if (response.status === 200) {
         if (isCreating()) {
-          Vue.swal('Muvaffaqiyatli yaratildi!');
+          Vue.swal(`${translate("swal.successCreate")}`);
         } else {
-          Vue.swal('Muvaffaqiyatli tahrirlandi!');
+          Vue.swal(`${translate("swal.successEdit")}`);
         }
         categoryStore.fetchAllCategories();
         handleCancel();
@@ -280,9 +201,13 @@ export default defineComponent({
       categoryStore,
       bookEditData,
       bookStore,
-      title,
       handleCancel,
       handleSubmit,
+    };
+  },
+  data() {
+    return {
+      title: this.$t("EditorBook.addBook"),
     };
   },
   methods: {
@@ -295,6 +220,19 @@ export default defineComponent({
     },
   },
   watch: {
+    $route(to, _from) {
+      if (to.params.type === 'create') {
+        this.title = this.$t("EditorBook.addBook");
+      } else {
+        this.title = this.$t("EditorBook.editBook");
+      }
+
+      this.bookEditData.name = '';
+      this.bookEditData.description = '';
+      this.bookEditData.author = '';
+      this.bookEditData.year = null;
+      this.bookEditData.categoryId = 1;
+    },
     'router.currentRoute.query.id': {
       handler() {
         this.bookStore.fetchBook(router.currentRoute.query.id?.toString());

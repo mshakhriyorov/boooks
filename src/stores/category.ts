@@ -1,15 +1,16 @@
+import Vue from 'vue';
 import { defineStore } from 'pinia';
+import { translate } from '@/i18next'
 
 import axiosInstance from '@/utils/axios';
 import type { Category } from '@/types/category';
-import Vue from 'vue';
 
 const SWEET_ALERT_OPTIONS = {
-  title: "Ushbu kategoriya o'chirilsinmi?",
+  title: translate("swal.deleteAlertCategory"),
   type: 'warning',
   showCancelButton: true,
   confirmButtonColor: '#3085d6',
-  confirmButtonText: "Ha, o'chirilsin!",
+  confirmButtonText: translate("swal.deleteConfirm") as string,
 };
 
 const INITIAL_STATE: Category = {
@@ -90,7 +91,7 @@ export const useCategoryStore = defineStore({
             );
 
             if (response.data.status === 200) {
-              Vue.swal("Kategoriya o'chirildi!");
+              Vue.swal(`${translate("swal.categoryDeleted")}`);
               this.fetchAllCategories();
             }
           } catch (error: any) {
