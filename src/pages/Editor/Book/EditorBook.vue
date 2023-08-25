@@ -113,7 +113,7 @@
 </template>
 
 <script lang="ts">
-import Vue, { defineComponent, reactive } from 'vue';
+import Vue, { defineComponent, reactive, ref } from 'vue';
 import { translate } from '@/i18next'
 
 import { handleRoute } from '@/utils/handleRoute';
@@ -143,6 +143,7 @@ export default defineComponent({
       categoryId: bookStore.book.categoryId,
     });
     const bookCreateData = reactive(INITIAL_EDITOR_DATA);
+    const title = ref(translate("EditorBook.addBook"))
 
     const isCreating = () => {
       if (router.currentRoute.params.type === 'create') {
@@ -151,6 +152,7 @@ export default defineComponent({
         return false;
       }
     };
+    
     const bookData = isCreating() ? bookCreateData : bookEditData;
 
     const handleCancel = () => {
@@ -174,7 +176,7 @@ export default defineComponent({
       }
 
       if (bookStore.coverImage) {
-        await bookStore.uploadCoverImageAPI(
+        bookStore.uploadCoverImageAPI(
           response.data.id,
           bookStore.coverImage,
         );
@@ -201,13 +203,9 @@ export default defineComponent({
       categoryStore,
       bookEditData,
       bookStore,
+      title,
       handleCancel,
       handleSubmit,
-    };
-  },
-  data() {
-    return {
-      title: this.$t("EditorBook.addBook"),
     };
   },
   methods: {
@@ -217,11 +215,12 @@ export default defineComponent({
         const file = fileInput.files[0];
         this.bookStore.setCoverImage(file);
       }
+      
     },
   },
   watch: {
-    $route(to, _from) {
-      if (to.params.type === 'create') {
+    $route(to, _from) {     
+      if (to.params.type === 'create') {       
         this.title = this.$t("EditorBook.addBook");
       } else {
         this.title = this.$t("EditorBook.editBook");

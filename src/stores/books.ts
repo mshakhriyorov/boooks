@@ -176,17 +176,12 @@ export const useBookStore = defineStore({
       try {
         const token = localStorage.getItem('token');
         const formData = new FormData();
-        formData.append('image', file);
-
-        for (let [key, value] of formData.entries()) {
-          console.log(key, value);
-        }
-        
+        formData.append('file', file);
 
         if (bookId) {
           const response = await axios.post(
             `${CONFIG_BASE_URL}book-file/cover/${bookId}`,
-            formData, 
+            formData,
             {
               headers: {
                 Authorization:
@@ -196,7 +191,7 @@ export const useBookStore = defineStore({
             },
           );
 
-          
+
           return response.data;
         }
       } catch (error) {
