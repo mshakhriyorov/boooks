@@ -112,8 +112,7 @@ export default defineComponent({
       }
     };
 
-    categoryData.name = '';
-    categoryData.description = '';
+
 
     return {
       categoryStore,
@@ -133,18 +132,22 @@ export default defineComponent({
     $route(to, _from) {
       if (to.params.type === 'create') {
         this.title = this.$t("EditorCategory.createCategory");
+        this.categoryEditData.name = '';
+        this.categoryEditData.description = '';
       } else {
         this.title = this.$t("EditorCategory.editCategory");
+        this.categoryEditData.name = this.categoryStore.category.name;
+        this.categoryEditData.description = this.categoryStore.category.description;
       }
-
-      this.categoryEditData.name = '';
-      this.categoryEditData.description = '';
     },
     'router.currentRoute.query.id': {
-      handler() {
-        this.categoryStore.fetchCategory(
+      async handler() {
+        await this.categoryStore.fetchCategory(
           router.currentRoute.query.id?.toString(),
         );
+        this.categoryEditData.name = this.categoryStore.category.name;
+        this.categoryEditData.description =
+          this.categoryStore.category.description;
       },
       immediate: true,
     },
